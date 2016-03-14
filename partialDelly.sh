@@ -48,13 +48,8 @@ do
 #        shift; shift;
 #        ;;
     --regionInterval | -I)
-	if [[$2 == -*]]
-	then
-	    usage
-	    exit 1
-	else
-	    export regionInterval=$2
-	fi
+	export regionInterval=$2
+	echo "region is $2"
 	shift; shift;
 	;;
     --outBasename | -o)
@@ -89,7 +84,7 @@ bam=$1
 export runName=$(basename $bam | sed 's/.bam//')
 
 # extract the targeted regions
-getSmlBam.sh $bam $regionInterval
+$SGE_O_WORKDIR/getSmlBam.sh $bam "$regionInterval"
 
 # run delly in the given mode
 delly -t $svType -o $runName.$svType.target.vcf -g $refGen ./$runName.target.sorted.bam
