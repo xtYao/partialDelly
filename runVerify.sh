@@ -24,7 +24,7 @@ cd $TMPDIR
 echo "$(date): copied data to working directory"
 
 # running on whole chr 6 and 4, DEL, TRA, DUP, INV
-for bam in $(find . -type f -name *.bam):
+for bam in *.bam
 do
     echo "$(date) start processing $bam"
     $SGE_O_WORKDIR/partialDelly -t DEL -R *.fa -I '6 4' $bam
