@@ -27,12 +27,10 @@ echo "$(date): copied data to working directory"
 for bam in $(find . -type f -name *.bam):
 do
     echo "$(date) start processing $bam"
-    partialDelly -t DEL -R *.fa -I '6 4' $bam
-    partialDelly -t TRA -R *.fa -I '6 4' $bam
+    $SGE_O_WORKDIR/partialDelly -t DEL -R *.fa -I '6 4' $bam
+    $SGE_O_WORKDIR/partialDelly -t TRA -R *.fa -I '6 4' $bam
 done
 
-#TODO: compress result files and move back to result dir
-#scp $runName.$svType.regional.vcf $SCRATCH/MMS22L_ARHGAP10_traVerify
-#scp $runName.$svType.regional.vcf /zenodotus/dat01/khuranalab_scratch/alm2069/Data_Source/BAM_files/MMS22L_ARHGAP10_translocation_sample/verifyTraResult
+# compress result files and move back to result dir
 tar -cvf $runName.result.tar *.target.sorted.bam* *.vcf
 scp $runName.result.tar $resultDir
