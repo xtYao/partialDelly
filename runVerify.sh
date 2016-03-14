@@ -18,7 +18,7 @@ resultDir=/zenodotus/dat01/khuranalab_scratch/xy293/MMS22L_ARHGAP10_traVerify
 echo "$(date): result will be saved to $resultDir"
 
 echo "$(date): copying data to working directory..."
-rsync -av $dataDir/01-28*.bam $TMPDIR
+rsync -av $dataDir/01-28*.bam* $TMPDIR
 rsync -av $grch37/* $TMPDIR
 cd $TMPDIR
 echo "$(date): copied data to working directory"
