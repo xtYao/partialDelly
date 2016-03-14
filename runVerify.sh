@@ -27,8 +27,8 @@ echo "$(date): copied data to working directory"
 for bam in *.bam
 do
     echo "$(date) start processing $bam"
-    $SGE_O_WORKDIR/partialDelly -t DEL -R *.fa -I '6 4' $bam
-    $SGE_O_WORKDIR/partialDelly -t TRA -R *.fa -I '6 4' $bam
+    $SGE_O_WORKDIR/partialDelly.sh -t DEL -R *.fa -I '6 4' $bam
+    $SGE_O_WORKDIR/partialDelly.sh -t TRA -R *.fa -I '6 4' $bam
 done
 
 # compress result files and move back to result dir
