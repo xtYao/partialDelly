@@ -1,4 +1,4 @@
-newBamName=$(basename $1 | sed 's/.bam/target.sorted.bam/')
+newBamName=$(basename $1 | sed 's/.bam/.target.sorted.bam/')
 regionInterval=$2
 
 if [ ! -f ./$newBamName ]
